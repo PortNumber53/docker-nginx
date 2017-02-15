@@ -16,4 +16,5 @@ sed -i 's/MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"/MAINTAINE
 TAG=`date +"%Y-%m-%d-%H-%M-%S"`
 docker build -t portnumber53/docker-nginx:${TAG} .
 
-docker push portnumber53/docker-nginx:${TAG}
+docker push portnumber53/docker-nginx:${TAG} \
+  && echo "Pushed image successfuly."
