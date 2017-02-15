@@ -13,7 +13,7 @@ cat ${ORIGINAL_DOCKERFILE} | sed 's~EXPOSE 80 443~'"${ESCAPED_DATA}"'~' > Docker
 
 sed -i 's/MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"/MAINTAINER Me Grimlock "grimlock@portnumber53.com"/g' Dockerfile
 
+TAG=`date +"%Y-%m-%d-%H-%M-%S"`
+docker build -t portnumber53/docker-nginx:${TAG} .
 
-docker build -t portnumber53/docker-nginx .
-
-docker push portnumber53/docker-nginx
+docker push portnumber53/docker-nginx:${TAG}
