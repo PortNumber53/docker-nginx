@@ -9,11 +9,11 @@ curl -o ${ORIGINAL_DOCKERFILE} https://raw.githubusercontent.com/nginxinc/docker
 # Thanks to http://stackoverflow.com/questions/10107459/replace-a-word-with-multiple-lines-using-sed
 DATA="$(cat ${ADDON_DOCKER_FILE})"
 ESCAPED_DATA="$(echo "${DATA}" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')"
-cat ${ORIGINAL_DOCKERFILE} | sed 's/EXPOSE 80 443/'"${ESCAPED_DATA}"'/' > Dockerfile
+cat ${ORIGINAL_DOCKERFILE} | sed 's~EXPOSE 80 443~'"${ESCAPED_DATA}"'~' > Dockerfile
 
 sed -i 's/MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"/MAINTAINER Me Grimlock "grimlock@portnumber53.com"/g' Dockerfile
 
 
-docker build -t portnumber53/nginx .
+docker build -t portnumber53/docker-nginx .
 
-docker push portnumber53/nginx
+docker push portnumber53/docker-nginx
